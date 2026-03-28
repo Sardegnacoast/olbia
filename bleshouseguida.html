@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="it" data-lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Blessed House Room – Guest Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terra:      #2a8fa0;
+    --terra-dark: #0d4858;
+    --terra-mid:  #1a6e82;
+    --terra-light:#5ab8cc;
+    --amber:      #f5a623;
+    --cream:      #f0ece4;
+    --cream-dark: #e6e0d4;
+    --white:      #FFFFFF;
+    --dark:       #08181e;
+    --dark-card:  #0a1e28;
+    --text-muted: #6a8a90;
+    --nav-active: #2a8fa0;
+    --row-border: #d8e8ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  [data-lang="en"] .it { display: none !important; }
+  [data-lang="it"] .en { display: none !important; }
+
+  .tab-content { display: none; padding-bottom: 88px; }
+  .tab-content.active { display: block; }
+
+  /* ══ HERO ══ */
+  .hero {
+    background:
+      radial-gradient(ellipse 65% 65% at 95% 8%, rgba(170,220,235,0.60) 0%, rgba(100,185,205,0.30) 38%, transparent 62%),
+      radial-gradient(ellipse 45% 55% at 5% 92%, rgba(8,40,58,0.55) 0%, transparent 50%),
+      linear-gradient(148deg, #0d4858 0%, #1a6e82 30%, #2a8fa0 56%, #3aa4ba 76%, #5ab8cc 100%);
+    padding: 14px 16px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -50px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(200,235,245,0.52) 0%, rgba(140,205,222,0.22) 40%, transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-toprow {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    position: relative; z-index: 2;
+  }
+  .location-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: white;
+  }
+  .lang-toggle {
+    display: flex;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    overflow: hidden; padding: 3px; gap: 2px;
+  }
+  .lang-btn {
+    display: flex; align-items: center; gap: 5px;
+    padding: 5px 11px; border-radius: 50px;
+    border: none; background: transparent;
+    color: rgba(255,255,255,0.72);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.75rem; font-weight: 800;
+    cursor: pointer;
+  }
+  .lang-btn.active { background: white; color: var(--terra); }
+
+  .hero-title { position: relative; z-index: 2; margin-bottom: 4px; }
+  .hero-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; line-height: 1.0;
+    color: var(--amber);
+    text-shadow: 0 2px 16px rgba(0,0,0,0.22);
+  }
+  .hero-tagline {
+    position: relative; z-index: 2;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.78rem; font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .hero-wave { position: relative; z-index: 2; margin-top: 8px; line-height: 0; }
+  .hero-wave svg { width: 100%; display: block; }
+
+  /* ══ INFO BAR ══ */
+  .info-bar {
+    background: var(--white);
+    display: grid; grid-template-columns: repeat(4,1fr);
+    border-bottom: 1px solid var(--row-border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .info-item {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 10px 4px; border-right: 1px solid var(--row-border);
+    gap: 3px; text-decoration: none; color: inherit;
+  }
+  .info-item:last-child { border-right: none; }
+  .info-item .ii-icon { font-size: 1.35rem; }
+  .info-item .ii-label {
+    font-size: 0.58rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #999;
+  }
+  .info-item .ii-val { font-size: 0.8rem; font-weight: 800; color: var(--dark); }
+  .info-item .ii-val.link { color: var(--terra); }
+
+  /* ══ LOGO CARD ══ */
+  .logo-card {
+    background: linear-gradient(135deg, #0a1e28 0%, #0d4858 55%, #1a6e82 100%);
+    margin: 10px 14px 0;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 7px 10px;
+  }
+  .logo-card-inner {
+    background: #ffffff; border-radius: 11px;
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    isolation: isolate;
+  }
+  .logo-card-inner img {
+    width: 58px; height: 58px; object-fit: contain; display: block;
+    mix-blend-mode: multiply;
+  }
+
+  /* ══ EXPLORE ══ */
+  .explore-header { padding: 14px 16px 4px; }
+  .explore-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--dark);
+  }
+  .explore-header p { font-size: 0.83rem; color: var(--text-muted); margin-top: 4px; }
+
+  /* ══ MENU ROWS ══ */
+  .menu-rows { padding: 6px 14px 0; }
+  .menu-row {
+    display: flex; align-items: center; gap: 11px;
+    background: var(--white);
+    border: 1px solid var(--row-border);
+    border-radius: 13px; padding: 10px 11px;
+    margin-bottom: 7px; cursor: pointer;
+    text-decoration: none; color: inherit;
+  }
+  .mr-icon {
+    width: 44px; height: 44px; background: var(--cream);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.45rem; flex-shrink: 0;
+  }
+  .mr-text { flex: 1; }
+  .mr-text h4 { font-size: 0.9rem; font-weight: 800; }
+  .mr-text p  { font-size: 0.74rem; color: var(--text-muted); margin-top: 1px; }
+  .mr-arrow {
+    width: 24px; height: 24px; background: var(--cream-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; color: var(--text-muted); flex-shrink: 0;
+  }
+
+  /* ══ INNER PAGES ══ */
+  .inner-header {
+    background: linear-gradient(135deg, #0d4858, #2a8fa0);
+    padding: 20px 18px 36px;
+    position: relative; overflow: hidden;
+  }
+  .inner-header::after {
+    content: ''; position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 28px; background: var(--cream);
+    border-radius: 28px 28px 0 0;
+  }
+  .inner-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; font-weight: 900; color: var(--amber);
+  }
+  .inner-header p { font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+  .section-body { padding: 14px 14px 0; }
+
+  .card-dark {
+    background: linear-gradient(135deg, #0a1e28, #0d4858);
+    border-radius: 16px; padding: 16px; color: white; margin-bottom: 10px;
+  }
+  .card-dark h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: #f5a623; margin-bottom: 8px;
+  }
+  .card-dark p { font-size: 0.86rem; color: rgba(255,255,255,0.78); line-height: 1.65; }
+  .host-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #3a5a1a; color: #cce890;
+    font-weight: 800; font-size: 0.85rem;
+    border: none; border-radius: 50px;
+    padding: 9px 18px; margin-top: 14px;
+    cursor: pointer; text-decoration: none;
+  }
+
+  .card-light {
+    background: white; border: 1px solid var(--row-border);
+    border-radius: 14px; padding: 12px 14px;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .card-light .cl-icon {
+    font-size: 1.8rem; width: 48px; height: 48px;
+    background: var(--cream); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-light h4 { font-size: 0.9rem; font-weight: 800; }
+  .card-light p  { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; line-height: 1.5; }
+
+  .season-banner {
+    background: linear-gradient(135deg, #d4920a, #a06e08);
+    border-radius: 14px; padding: 11px 14px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .season-banner .sb-icon { font-size: 1.8rem; }
+  .season-banner h4 { font-size: 0.88rem; font-weight: 800; color: white; }
+  .season-banner p  { font-size: 0.78rem; color: rgba(255,255,255,0.82); margin-top: 2px; }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .pill {
+    display: flex; align-items: center; gap: 4px;
+    background: white; border: 1.5px solid var(--row-border);
+    border-radius: 50px; padding: 5px 10px;
+    font-size: 0.78rem; font-weight: 700;
+  }
+
+  .room-card {
+    background: white; border-radius: 20px;
+    overflow: hidden; margin-bottom: 14px;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.07);
+  }
+  .room-img { width:100%; height:180px; object-fit:cover; display:block; }
+  .room-body { padding: 16px; }
+  .room-badge {
+    display: inline-block; background: #2a8fa0; color: white;
+    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; border-radius: 50px;
+    padding: 3px 10px; margin-bottom: 8px;
+  }
+  .room-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 700; margin-bottom: 6px;
+  }
+  .room-body > p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
+  .room-feats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+  .feat-tag {
+    background: #eaf4f8; border: 1px solid #b8d8e4;
+    border-radius: 50px; font-size: 0.73rem; font-weight: 700;
+    color: #0d4858; padding: 4px 10px;
+  }
+  .book-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
+    background: linear-gradient(135deg, #2a8fa0, #0d4858);
+    color: white; font-weight: 800; font-size: 0.9rem;
+    border: none; border-radius: 12px; padding: 13px;
+    text-decoration: none; cursor: pointer;
+  }
+
+  .city-row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: white; border: 1px solid var(--row-border);
+    border-radius: 12px; padding: 10px 12px;
+    margin-bottom: 8px; text-decoration: none; color: inherit;
+  }
+  .city-row-left { display:flex; align-items:center; gap:12px; }
+  .city-row .cr-icon {
+    width:44px; height:44px; background:var(--cream);
+    border-radius:12px; display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; flex-shrink:0;
+  }
+  .city-row h4 { font-size:0.88rem; font-weight:800; }
+  .city-row p  { font-size:0.76rem; color:var(--text-muted); margin-top:2px; }
+  .maps-btn {
+    display: inline-flex; align-items: center; gap: 3px;
+    background: #e8f4f7; border: 1.5px solid #a8d4e0;
+    color: #0d4858; border-radius: 50px;
+    padding: 5px 10px; font-size: 0.68rem; font-weight: 800;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* colazione – warm amber */
+  .city-row.cat-col {
+    background: linear-gradient(135deg, #fffaf0, #fff5e0);
+    border-color: #f0d898;
+    border-left: 4px solid #d4920a;
+  }
+  .city-row.cat-col .cr-icon { background: #fef3d0; }
+  .city-row.cat-col h4 { color: #7a4e00; }
+  .city-row.cat-col .city-arrow { color: #d4920a; }
+
+  /* ristoranti – deep teal */
+  .city-row.cat-rist {
+    background: linear-gradient(135deg, #f0f9fa, #e6f4f6);
+    border-color: #a8d8e0;
+    border-left: 4px solid #2a8fa0;
+  }
+  .city-row.cat-rist .cr-icon { background: #d4eef3; }
+  .city-row.cat-rist h4 { color: #0d4858; }
+  .city-row.cat-rist .city-arrow { color: #2a8fa0; }
+
+  /* agriturismi – green */
+  .city-row.cat-agri {
+    background: linear-gradient(135deg, #f2faf4, #e6f5ea);
+    border-color: #a8d8b0;
+    border-left: 4px solid #2a8a45;
+  }
+  .city-row.cat-agri .cr-icon { background: #d4eeda; }
+  .city-row.cat-agri h4 { color: #1a5a2a; }
+  .city-row.cat-agri .city-arrow { color: #2a8a45; }
+
+  /* pizza – coral red */
+  .city-row.cat-pizza {
+    background: linear-gradient(135deg, #fff5f3, #ffe8e4);
+    border-color: #f0b8b0;
+    border-left: 4px solid #c44a30;
+  }
+  .city-row.cat-pizza .cr-icon { background: #fdd8d0; }
+  .city-row.cat-pizza h4 { color: #8a2010; }
+  .city-row.cat-pizza .city-arrow { color: #c44a30; }
+
+  /* panini – warm orange */
+  .city-row.cat-panini {
+    background: linear-gradient(135deg, #fff8f0, #ffeedd);
+    border-color: #f0c890;
+    border-left: 4px solid #c87820;
+  }
+  .city-row.cat-panini .cr-icon { background: #fde8c4; }
+  .city-row.cat-panini h4 { color: #7a4800; }
+  .city-row.cat-panini .city-arrow { color: #c87820; }
+
+  /* aperitivo – purple */
+  .city-row.cat-aper {
+    background: linear-gradient(135deg, #faf0ff, #f3e4ff);
+    border-color: #d0a8f0;
+    border-left: 4px solid #8040c0;
+  }
+  .city-row.cat-aper .cr-icon { background: #e8d0fa; }
+  .city-row.cat-aper h4 { color: #4a1880; }
+  .city-row.cat-aper .city-arrow { color: #8040c0; }
+
+  /* gelateria – pink */
+  .city-row.cat-gel {
+    background: linear-gradient(135deg, #fff0f8, #ffe4f4);
+    border-color: #f0a8d4;
+    border-left: 4px solid #c04080;
+  }
+  .city-row.cat-gel .cr-icon { background: #fdd0ea; }
+  .city-row.cat-gel h4 { color: #7a1848; }
+  .city-row.cat-gel .city-arrow { color: #c04080; }
+
+  .reach-card {
+    background: linear-gradient(135deg, #0a1e28, #0d4858);
+    border-radius: 16px; padding: 16px; margin-bottom: 10px;
+  }
+  .reach-card h3 {
+    font-family:'Playfair Display',serif;
+    font-size:1.1rem; color:#f5a623; margin-bottom:14px;
+  }
+  .reach-item { display:flex; gap:12px; margin-bottom:12px; align-items:flex-start; }
+  .reach-item:last-child { margin-bottom:0; }
+  .reach-item .ri { font-size:1.3rem; flex-shrink:0; margin-top:2px; }
+  .reach-item p { font-size:0.82rem; color:rgba(255,255,255,0.72); line-height:1.6; }
+  .reach-item p strong { color:white; display:block; margin-bottom:2px; }
+
+  /* ══ PARTNER CARDS ══ */
+  .partner-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border: 1px solid var(--row-border);
+  }
+  .partner-top-bar { height: 4px; width: 100%; }
+  .partner-body { padding: 14px 16px; }
+  .partner-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+  .partner-icon {
+    width: 52px; height: 52px; border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; flex-shrink: 0;
+  }
+  .partner-info { flex: 1; padding-top: 2px; }
+  .partner-info h4 { font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 5px; }
+  .partner-badge {
+    display: inline-block; border-radius: 50px; padding: 3px 10px;
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.04em;
+  }
+  .partner-card p { font-size: 0.82rem; color: #556; line-height: 1.6; margin-bottom: 4px; }
+  .partner-prices { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+  .partner-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--row-border);
+  }
+  .partner-phone {
+    font-size: 0.8rem; font-weight: 700; color: var(--terra);
+    text-decoration: none; display: flex; align-items: center; gap: 5px;
+  }
+  .partner-btn {
+    background: linear-gradient(135deg, #2a8fa0, #0d4858);
+    color: white; font-weight: 800; font-size: 0.82rem;
+    border: none; border-radius: 50px; padding: 8px 16px;
+    text-decoration: none; cursor: pointer; white-space: nowrap;
+  }
+
+  /* ══ LUOGHI LABELS ══ */
+  .luoghi-section-label {
+    font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terra); 
+    padding: 4px 2px 8px;
+  }
+
+  /* ══ BOTTOM NAV ══ */
+  .bottom-nav {
+    position: fixed; bottom:0; left:50%; transform:translateX(-50%);
+    width:100%; max-width:480px;
+    background: white; border-top: 1px solid var(--row-border);
+    display: flex; z-index:1000;
+    box-shadow: 0 -3px 16px rgba(0,0,0,0.08);
+  }
+  .nav-btn {
+    flex:1; display:flex; flex-direction:column;
+    align-items:center; padding:9px 2px 7px;
+    border:none; background:none; cursor:pointer; gap:2px;
+    position:relative;
+  }
+  .nav-btn .ni { font-size:1.3rem; }
+  .nav-btn .nl {
+    font-family:'Nunito',sans-serif; font-size:0.58rem;
+    font-weight:800; color:#aaa;
+  }
+  .nav-btn.active .nl { color:var(--nav-active); }
+  .nav-btn.active::after {
+    content:''; position:absolute; bottom:0; left:18%; right:18%;
+    height:3px; background:var(--nav-active);
+    border-radius:3px 3px 0 0;
+  }
+
+  .city-row.cat-col .maps-btn   { background:#fef3d0; border-color:#d4920a; color:#7a4e00; }
+  .city-row.cat-rist .maps-btn  { background:#d4eef3; border-color:#2a8fa0; color:#0d4858; }
+  .city-row.cat-agri .maps-btn  { background:#d4eeda; border-color:#2a8a45; color:#1a5a2a; }
+  .city-row.cat-pizza .maps-btn { background:#fdd8d0; border-color:#c44a30; color:#8a2010; }
+  .city-row.cat-panini .maps-btn{ background:#fde8c4; border-color:#c87820; color:#7a4800; }
+  .city-row.cat-aper .maps-btn  { background:#e8d0fa; border-color:#8040c0; color:#4a1880; }
+  .city-row.cat-gel .maps-btn   { background:#fdd0ea; border-color:#c04080; color:#7a1848; }
+
+  /* spiagge – ocean blue */
+  .city-row.cat-beach {
+    background: linear-gradient(135deg, #f0f8ff, #e4f2fc);
+    border-color: #a8ccec;
+    border-left: 4px solid #1a6eb8;
+  }
+  .city-row.cat-beach .cr-icon  { background: #d0e8f8; }
+  .city-row.cat-beach h4        { color: #0a3a6e; }
+  .city-row.cat-beach .maps-btn { background: #d0e8f8; border-color: #1a6eb8; color: #0a3a6e; }
+
+  /* ══ MUOVERSI CARDS ══ */
+  .move-card {
+    background: white; border: 1px solid var(--row-border);
+    border-radius: 18px; padding: 16px 16px 14px;
+    margin-bottom: 12px;
+  }
+  .move-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .move-icon {
+    width: 50px; height: 50px; background: var(--cream);
+    border-radius: 13px; font-size: 1.6rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .move-header h4 { font-size: 1rem; font-weight: 800; color: var(--dark); }
+  .move-list {
+    list-style: none; padding: 0; margin: 0 0 12px 0;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .move-list li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 0.84rem; color: #445; line-height: 1.5;
+  }
+  .move-list li::before {
+    content: '●'; color: var(--terra); font-size: 0.5rem;
+    margin-top: 5px; flex-shrink: 0;
+  }
+  .move-link {
+    color: var(--terra); font-weight: 700; text-decoration: none;
+  }
+  .move-maps-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #2a80e0; color: white;
+    font-size: 0.82rem; font-weight: 800;
+    border-radius: 50px; padding: 8px 16px;
+    text-decoration: none;
+  }
+  .move-btns {
+    display: flex; gap: 10px; margin-top: 2px;
+  }
+  .move-phone-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--terra); color: white;
+    font-size: 0.82rem; font-weight: 800;
+    border-radius: 50px; padding: 8px 16px;
+    text-decoration: none;
+  }
+  .move-web-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #2a80e0; color: white;
+    font-size: 0.82rem; font-weight: 800;
+    border-radius: 50px; padding: 8px 16px;
+    text-decoration: none;
+  }
+  .move-contatti-label {
+    padding: 6px 2px 10px;
+  }
+  .move-contatti-label h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900; color: var(--dark);
+  }
+  .move-contact-card {
+    background: var(--terra); border-radius: 18px;
+    padding: 16px; margin-bottom: 16px;
+  }
+  .move-contact-card > p {
+    font-size: 0.84rem; color: rgba(255,255,255,0.85);
+    margin-bottom: 12px;
+  }
+  .move-contact-row {
+    background: white; border-radius: 14px;
+    padding: 12px 14px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .move-contact-info {
+    display: flex; align-items: center; gap: 10px; flex: 1;
+  }
+  .move-phone-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .move-contact-info strong {
+    display: block; font-size: 0.82rem; font-weight: 800; color: var(--dark);
+  }
+  .move-contact-num {
+    display: block; font-size: 0.9rem; font-weight: 800; color: var(--terra);
+  }
+  .move-wa-btn {
+    width: 46px; height: 46px; background: #25D366;
+    border-radius: 13px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.4rem;
+    text-decoration: none; flex-shrink: 0;
+  }
+
+  /* ══ HOUSE RULES ══ */
+  .rules-card {
+    background: white; border: 1px solid var(--row-border);
+    border-radius: 18px; padding: 16px; margin-bottom: 10px;
+  }
+  .rules-card h4 {
+    font-size: 0.9rem; font-weight: 800; color: var(--dark);
+    margin-bottom: 12px;
+  }
+  .rules-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .rule-item {
+    display: flex; align-items: center; gap: 8px;
+    border-radius: 12px; padding: 10px 12px;
+  }
+  .rule-ok { background: #eaf7f0; border: 1px solid #b8e8cc; }
+  .rule-no { background: #fdf0f0; border: 1px solid #f0c0c0; }
+  .rule-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .rule-text { font-size: 0.76rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
+  .rule-no .rule-text { color: #c04040; }
+  .rule-ok .rule-text { color: #1a6e40; }
+
+  /* ══ KIT ITEMS ══ */
+  .kit-items { margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
+  .kit-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.82rem; color: var(--dark);
+  }
+  .kit-qty {
+    background: #0d4858; color: white;
+    font-size: 0.65rem; font-weight: 800;
+    border-radius: 50px; padding: 2px 7px;
+    flex-shrink: 0; min-width: 28px; text-align: center;
+  }
+
+  /* ══ EXTRA SERVICES GRID ══ */
+  .extra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .extra-card {
+    background: var(--ecl, #f0f8ff);
+    border: 1.5px solid color-mix(in srgb, var(--ec, #2a8fa0) 25%, white);
+    border-left: 4px solid var(--ec, #2a8fa0);
+    border-radius: 14px;
+    padding: 13px 12px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 6px;
+    position: relative;
+  }
+  .extra-icon { font-size: 1.6rem; line-height: 1; }
+  .extra-body { flex: 1; }
+  .extra-body h4 { font-size: 0.82rem; font-weight: 800; color: var(--ec); line-height: 1.2; }
+  .extra-body p  { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+  .extra-price {
+    display: inline-block;
+    background: var(--ec, #2a8fa0);
+    color: white; font-size: 0.7rem; font-weight: 800;
+    border-radius: 50px; padding: 3px 9px;
+    margin-top: 4px;
+  }
+  .extra-wa {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 1rem; opacity: 0.5;
+  }
+
+  /* ══ WIFI CARD ══ */
+  .wifi-card {
+    background: linear-gradient(135deg, #0a1e28, #0d4858);
+    border-radius: 18px; padding: 18px; margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .wifi-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  }
+  .wifi-icon { font-size: 2rem; }
+  .wifi-header h4 { font-size: 1rem; font-weight: 800; color: white; }
+  .wifi-header p  { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .wifi-credentials {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; overflow: hidden;
+  }
+  .wifi-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 13px 14px;
+  }
+  .wifi-label {
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    min-width: 62px; flex-shrink: 0;
+  }
+  .wifi-value {
+    flex: 1; font-size: 1rem; font-weight: 800;
+    color: #f5a623; letter-spacing: 0.03em;
+    font-family: 'Nunito', monospace;
+  }
+  .wifi-copy {
+    background: rgba(255,255,255,0.12); border: none;
+    border-radius: 8px; padding: 6px 10px;
+    font-size: 0.9rem; cursor: pointer;
+    color: white; flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .wifi-copy:active { background: rgba(245,166,35,0.4); }
+  .wifi-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0 14px; }
+
+  .wifi-connect-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; margin-top: 12px;
+    background: #f5a623; color: #0a1e28;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem; font-weight: 800;
+    border: none; border-radius: 12px; padding: 12px;
+    cursor: pointer;
+  }
+
+  /* WiFi Modal */
+  .wifi-modal {
+    display: none; position: fixed;
+    inset: 0; z-index: 3000;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .wifi-modal.open { display: flex; }
+  .wifi-modal-inner {
+    background: white; border-radius: 24px;
+    padding: 24px 20px; width: 88%; max-width: 320px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+  .wifi-modal-header h4 { font-size: 1rem; font-weight: 800; color: #0d4858; margin-bottom: 4px; }
+  .wifi-modal-header p  { font-size: 0.78rem; color: #778; margin-bottom: 16px; }
+  .wifi-modal-creds {
+    background: #f0f8fb; border-radius: 12px;
+    padding: 10px 14px; font-size: 0.82rem;
+    color: #445; margin-bottom: 14px; line-height: 1.8;
+  }
+  .wifi-modal-creds strong { color: #0d4858; }
+  .wifi-modal-close {
+    background: #0d4858; color: white;
+    border: none; border-radius: 50px;
+    padding: 10px 24px; font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem; font-weight: 800; cursor: pointer;
+  }
+
+  /* ══ FIXED LANG TOGGLE ══ */
+  .lang-fixed {
+    position: fixed;
+    top: 12px; right: 14px;
+    z-index: 2000;
+    display: flex;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(0,0,0,0.12);
+    border-radius: 50px;
+    overflow: hidden; padding: 3px; gap: 2px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  }
+  .lang-fixed .lang-btn {
+    color: #888;
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+  .lang-fixed .lang-btn.active {
+    background: #0d4858;
+    color: white;
+  }
+  /* hide the in-hero lang toggle on all tabs */
+  .hero .lang-toggle { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ══ HOME ══ -->
+<div id="tab-home" class="tab-content active">
+  <div class="hero">
+    <div class="hero-toprow">
+      <div class="location-badge">🌊 Olbia · Sardegna</div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-it" onclick="setLang('it')">🇮🇹 IT</button>
+        <button class="lang-btn"        id="btn-en" onclick="setLang('en')">🇬🇧 EN</button>
+      </div>
+    </div>
+    <div class="hero-title">
+      <h2>Blessed<br>House Room</h2>
+    </div>
+    <div class="hero-tagline it">Affittacamere · 4 camere · Olbia OT</div>
+    <div class="hero-tagline en">Guesthouse · 4 rooms · Olbia OT</div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 480 42" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,20 C80,42 160,0 240,20 C320,42 400,0 480,20 L480,42 L0,42 Z" fill="#f0ece4"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-item">
+      <span class="ii-icon">🔑</span>
+      <span class="ii-label">Check-in</span>
+      <span class="ii-val">15:00</span>
+    </div>
+    <div class="info-item">
+      <span class="ii-icon">🚪</span>
+      <span class="ii-label">Check-out</span>
+      <span class="ii-val">10:00</span>
+    </div>
+    <div class="info-item" onclick="showWifiQR()" style="cursor:pointer;">
+      <span class="ii-icon">📶</span>
+      <span class="ii-label">WiFi</span>
+      <span class="ii-val link">✓ Free</span>
+    </div>
+    <a class="info-item" href="https://maps.google.com/?q=Via+Vincenzo+Vela,+66,+07026+Olbia+OT" target="_blank">
+      <span class="ii-icon">🧭</span>
+      <span class="ii-label it">Naviga</span>
+      <span class="ii-label en">Navigate</span>
+      <span class="ii-val link">Maps</span>
+    </a>
+  </div>
+
+  <a href="https://blessedhomeolbia.it/" target="_blank" style="text-decoration:none; display:block;">
+  <div class="logo-card">
+    <div class="logo-card-inner">
+      <img src="data:image/jpeg;base64,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tyrz4SMnGf8AVscnrXB6j8MPGniD4k6RJdI2n+GvDl09xHdi6L3l4JIQrl5Q3nBpG+Vh8iqi8ZJ439nQc7J2ST679uxy+3xsad3FuUmraWtrr16I+ldLt7CzsIbLTbaOzt7dFRLeNVRYVA4QInyrgdhxVPUfDHhrVpzc6rpNpezFQpeeCORio6DLKTgZ6Ve0/TbHS7cW2nwLbxA52oMZJ6k9yT3J5rRryHa+h9Mr21Mm60bR763gtb2xguIbVleGOSJXSNkGFKAghSo4BHSnaho+k6vGkWq2UF4kZ3Is8ayBTjGQGBwccVqUUhmVpujaRo6PDpFjBYxyNuZYIliDNjGSFAycd61aKKACiiigAooooA//0P38ooooAKKKKACiiigAooooA4D4meFNQ8c+A9a8J6Zf/wBm3Op25hSfBIXJBIbHO1gNrY5wT9K4/Q9O+Mthotj4ft7bw/o8VlDHbiaNri5AVF2gpBthA6ZwXx9a9vorqhXlGHJZNXucNTCxnU9rdp2to+m/9WPN/B3w7s/DGpah4j1C9l1rxDqwVbq/nCqTGn3Yoo1+WKJeyjPPJJNekUUVjOcpu8mdNKlClHkgrL+vvCiiiszUKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/0f38ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9L9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z" alt="B&B 26 Rooms"
+           onerror="this.style.display='none';this.parentElement.innerHTML='🏠';" style="mix-blend-mode:multiply;">
+    </div>
+  </div>
+  </a>
+
+  <div class="explore-header">
+    <h3 class="it">Esplora la guida</h3>
+    <h3 class="en">Explore the guide</h3>
+    <p class="it">Tutto quello che ti serve</p>
+    <p class="en">Everything you need</p>
+  </div>
+
+  <div class="menu-rows">
+    <div class="menu-row" onclick="showTab('soggiorno', document.querySelectorAll('.nav-btn')[1])">
+      <div class="mr-icon">🛏️</div>
+      <div class="mr-text">
+        <h4 class="it">Il tuo soggiorno</h4><h4 class="en">Your stay</h4>
+        <p class="it">Check-in, camere, regole</p><p class="en">Check-in, rooms, rules</p>
+      </div>
+      <div class="mr-arrow">›</div>
+    </div>
+    <div class="menu-row" onclick="showTab('luoghi', document.querySelectorAll('.nav-btn')[2])">
+      <div class="mr-icon">🗺️</div>
+      <div class="mr-text">
+        <h4 class="it">Luoghi da visitare</h4><h4 class="en">Places to visit</h4>
+        <p class="it">Spiagge, attrazioni, natura</p><p class="en">Beaches, attractions, nature</p>
+      </div>
+      <div class="mr-arrow">›</div>
+    </div>
+    <div class="menu-row" onclick="showTab('mangiare', document.querySelectorAll('.nav-btn')[3])">
+      <div class="mr-icon">🍽️</div>
+      <div class="mr-text">
+        <h4 class="it">Dove mangiare</h4><h4 class="en">Where to eat</h4>
+        <p class="it">Ristoranti, bar, gelaterie</p><p class="en">Restaurants, bars, gelato</p>
+      </div>
+      <div class="mr-arrow">›</div>
+    </div>
+    <div class="menu-row" onclick="showTab('muoversi', document.querySelectorAll('.nav-btn')[4])">
+      <div class="mr-icon">🚗</div>
+      <div class="mr-text">
+        <h4 class="it">Come muoversi</h4><h4 class="en">Getting around</h4>
+        <p class="it">Auto, taxi, bus, aeroporto</p><p class="en">Car, taxi, bus, airport</p>
+      </div>
+      <div class="mr-arrow">›</div>
+    </div>
+    <div class="menu-row" onclick="showTab('servizi', document.querySelectorAll('.nav-btn')[5])">
+      <div class="mr-icon">✨</div>
+      <div class="mr-text">
+        <h4 class="it">Servizi</h4><h4 class="en">Services</h4>
+        <p class="it">Su richiesta</p><p class="en">On request</p>
+      </div>
+      <div class="mr-arrow">›</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ SOGGIORNO ══ -->
+<div id="tab-soggiorno" class="tab-content">
+  <div class="inner-header">
+    <h2 class="it">Il tuo soggiorno</h2><h2 class="en">Your stay</h2>
+    <p class="it">Check-in, camere e info pratiche</p><p class="en">Check-in, rooms and practical info</p>
+  </div>
+  <div class="section-body">
+    <div class="card-dark">
+      <h3 class="it">Benvenuto! 👋</h3><h3 class="en">Welcome! 👋</h3>
+      <p class="it">Benvenuti! Abbiamo 4 camere con sala comune. Due triple con veranda e due matrimoniali con giardino privato. Non siete solo ospiti, siete parte della nostra famiglia.</p>
+      <p class="en">Welcome! We have 4 rooms with a shared lounge. Two triple rooms with veranda and two double rooms with private garden. You're part of our family.</p>
+      <a href="https://wa.me/393335433546" target="_blank" class="host-btn">⭐ Michele – WhatsApp</a>
+    </div>
+    <div class="card-light"><div class="cl-icon">🔑</div><div>
+      <h4 class="it">Self Check-in dalle 15:00</h4><h4 class="en">Self Check-in from 3:00 PM</h4>
+      <p class="it">Troverai le istruzioni per accedere in autonomia.</p>
+      <p class="en">You will find instructions to access independently.</p>
+    </div></div>
+    <div class="card-light"><div class="cl-icon">🚪</div><div>
+      <h4 class="it">Self Check-out entro le 10:00</h4><h4 class="en">Self Check-out by 10:00 AM</h4>
+      <p class="it">Lascia tassa di soggiorno e chiavi sul tavolo della camera.</p>
+      <p class="en">Leave the tourist tax and keys on the room table.</p>
+    </div></div>
+
+    <!-- Regole casa -->
+    <div class="rules-card">
+      <h4 class="it">📋 Regole della casa</h4>
+      <h4 class="en">📋 House rules</h4>
+      <div class="rules-grid">
+        <div class="rule-item rule-ok">
+          <span class="rule-icon">🚬</span>
+          <span class="rule-text it">Fumare solo in veranda e giardino privato</span>
+          <span class="rule-text en">Smoking on veranda and private garden only</span>
+        </div>
+        <div class="rule-item rule-no">
+          <span class="rule-icon">🐾</span>
+          <span class="rule-text it">Animali non ammessi</span>
+          <span class="rule-text en">No pets allowed</span>
+        </div>
+        <div class="rule-item rule-ok" style="grid-column: span 2;">
+          <span class="rule-icon">👥</span>
+          <span class="rule-text it">2 ospiti (matrimoniale) · 3 ospiti (tripla)</span>
+          <span class="rule-text en">2 guests (double) · 3 guests (triple)</span>
+        </div>
+        <div class="rule-item rule-no" style="grid-column: span 2;">
+          <span class="rule-icon">🔇</span>
+          <span class="rule-text it">Silenzio 22:00–9:00 e 14:00–16:00</span>
+          <span class="rule-text en">Quiet hours 10 PM–9 AM & 2–4 PM</span>
+        </div>
+        <div class="rule-item rule-no" style="grid-column: span 2;">
+          <span class="rule-icon">🚽</span>
+          <span class="rule-text it">Nel WC solo carta igienica. No assorbenti o pannolini</span>
+          <span class="rule-text en">Flush only toilet paper. No pads or nappies</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-light">
+      <div class="cl-icon">🧹</div>
+      <div>
+        <h4 class="it">Pulizia e biancheria</h4><h4 class="en">Cleaning & linen</h4>
+        <p class="it">Pulizia e cambio biancheria ogni <strong>3 notti</strong>.</p>
+        <p class="en">Cleaning and linen change every <strong>3 nights</strong>.</p>
+      </div>
+    </div>
+
+    <div class="card-light" style="align-items:flex-start;">
+      <div class="cl-icon">🥐</div>
+      <div style="flex:1;">
+        <h4 class="it">Welcome Kit</h4><h4 class="en">Welcome Kit</h4>
+        <div class="kit-items">
+          <div class="kit-row"><span class="kit-qty">×2</span><span>☕ <span class="it">Capsule caffè</span><span class="en">Coffee capsules</span></span></div>
+          <div class="kit-row"><span class="kit-qty">×2</span><span>🍞 <span class="it">Fette biscottate</span><span class="en">Rusks</span></span></div>
+          <div class="kit-row"><span class="kit-qty">×2</span><span>🍓 <span class="it">Marmellate monodose</span><span class="en">Jam portions</span></span></div>
+          <div class="kit-row"><span class="kit-qty">×2</span><span>🍪 <span class="it">Biscotti monodose</span><span class="en">Biscuits</span></span></div>
+          <div class="kit-row"><span class="kit-qty">×1</span><span>💧 <span class="it">Bottiglia d'acqua</span><span class="en">Water bottle</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WiFi Card -->
+    <div class="wifi-card">
+      <div class="wifi-header">
+        <span class="wifi-icon">📶</span>
+        <div>
+          <h4 class="it">WiFi Gratuito</h4><h4 class="en">Free WiFi</h4>
+          <p class="it">Disponibile in tutta la struttura</p>
+          <p class="en">Available throughout the property</p>
+        </div>
+      </div>
+      <div class="wifi-credentials">
+        <div class="wifi-row">
+          <span class="wifi-label it">Rete 1</span>
+          <span class="wifi-label en">Network 1</span>
+          <span class="wifi-value" style="font-size:0.88rem;">Blessed b&amp;b</span>
+          <button class="wifi-copy" onclick="copyText('Blessed b&b', this)">📋</button>
+        </div>
+        <div class="wifi-divider"></div>
+        <div class="wifi-row">
+          <span class="wifi-label it">Password</span>
+          <span class="wifi-label en">Password</span>
+          <span class="wifi-value" style="font-size:0.82rem;">supersuperblessed</span>
+          <button class="wifi-copy" onclick="copyText('supersuperblessed', this)">📋</button>
+        </div>
+        <div class="wifi-divider" style="background:rgba(255,255,255,0.18); margin:0 14px;"></div>
+        <div class="wifi-row">
+          <span class="wifi-label it">Rete 2</span>
+          <span class="wifi-label en">Network 2</span>
+          <span class="wifi-value" style="font-size:0.88rem;">Blessed_Wifi</span>
+          <button class="wifi-copy" onclick="copyText('Blessed_Wifi', this)">📋</button>
+        </div>
+        <div class="wifi-divider"></div>
+        <div class="wifi-row">
+          <span class="wifi-label it">Password</span>
+          <span class="wifi-label en">Password</span>
+          <span class="wifi-value" style="font-size:0.88rem;">Blessed24</span>
+          <button class="wifi-copy" onclick="copyText('Blessed24', this)">📋</button>
+        </div>
+      </div>
+      <button class="wifi-connect-btn" onclick="showWifiQR()">
+        <span class="it">📲 Connetti al WiFi</span>
+        <span class="en">📲 Connect to WiFi</span>
+      </button>
+    </div>
+
+
+  </div>
+</div>
+
+
+<!-- ══ LUOGHI ══ -->
+<div id="tab-luoghi" class="tab-content">
+  <div class="inner-header">
+    <h2 class="it">Luoghi da visitare</h2><h2 class="en">Places to visit</h2>
+    <p class="it">Attrazioni, natura e gite nei dintorni</p><p class="en">Attractions, nature and day trips nearby</p>
+  </div>
+  <div class="section-body">
+
+    <!-- OLBIA -->
+    <div class="luoghi-section-label it">📍 Olbia</div>
+    <div class="luoghi-section-label en">📍 Olbia</div>
+
+    <a class="city-row" href="https://maps.google.com/?q=Basilica+San+Simplicio+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">⛪</div><div>
+        <h4>Basilica di San Simplicio</h4>
+        <p class="it">Centro storico · XI secolo · Romanico sardo</p>
+        <p class="en">Historic centre · 11th century · Sardinian Romanesque</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <a class="city-row" href="https://maps.google.com/?q=Parco+Fausto+Noce+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🌳</div><div>
+        <h4 class="it">Parco Fausto Noce</h4><h4 class="en">Fausto Noce Park</h4>
+        <p class="it">Parco urbano · Relax e passeggiate</p>
+        <p class="en">City park · Relaxation and walks</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <a class="city-row" href="https://maps.google.com/?q=Isola+di+Tavolara+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏝️</div><div>
+        <h4 class="it">Isola di Tavolara</h4><h4 class="en">Tavolara Island</h4>
+        <p class="it">15 min · Riserva marina protetta</p>
+        <p class="en">15 min · Protected marine reserve</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <a class="city-row" href="https://maps.google.com/?q=Ruota+panoramica+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🎡</div><div>
+        <h4 class="it">Ruota Panoramica</h4><h4 class="en">Panoramic Wheel</h4>
+        <p class="it">Vista mozzafiato sul golfo di Olbia</p>
+        <p class="en">Breathtaking view over the Gulf of Olbia</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <a class="city-row" href="https://maps.google.com/?q=Castello+di+Pedres+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏰</div><div>
+        <h4 class="it">Castello di Pedres</h4><h4 class="en">Pedres Castle</h4>
+        <p class="it">Medioevo · Panorama sulla città</p>
+        <p class="en">Medieval castle · Panoramic views</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- COSTA -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">⛵ Costa</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">⛵ Coast</div>
+
+    <a class="city-row" href="https://maps.google.com/?q=Porto+Cervo+Costa+Smeralda" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">💎</div><div>
+        <h4>Porto Cervo</h4>
+        <p class="it">30 min · Costa Smeralda · Luxury e yacht</p>
+        <p class="en">30 min · Costa Smeralda · Luxury & yachts</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <a class="city-row" href="https://maps.google.com/?q=Porto+Rotondo+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">⛵</div><div>
+        <h4>Porto Rotondo</h4>
+        <p class="it">25 min · Marina · Piazzetta vivace</p>
+        <p class="en">25 min · Marina · Vibrant piazza</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <a class="city-row" href="https://maps.google.com/?q=Golfo+Aranci+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🟠</div><div>
+        <h4>Golfo Aranci</h4>
+        <p class="it">15 min · Borgo di pescatori · Mare cristallino</p>
+        <p class="en">15 min · Fishing village · Crystal clear sea</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- GITA -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">🚢 Gita in barca</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">🚢 Boat trip</div>
+
+    <a class="city-row" href="https://maps.google.com/?q=Arcipelago+della+Maddalena+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏝️</div><div>
+        <h4 class="it">Arcipelago della Maddalena</h4><h4 class="en">La Maddalena Archipelago</h4>
+        <p class="it">Gita in barca · Acque trasparenti · Patrimonio UNESCO</p>
+        <p class="en">Boat trip · Crystal waters · UNESCO heritage</p>
+      </div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- ── SPIAGGE ── -->
+    <div class="luoghi-section-label it" style="margin-top:10px;">🏖️ Spiagge</div>
+    <div class="luoghi-section-label en" style="margin-top:10px;">🏖️ Beaches</div>
+
+    <!-- Pittulongu -->
+    <div class="luoghi-section-label" style="font-size:0.65rem; color:var(--text-muted); padding:6px 2px 4px; letter-spacing:0.06em;">📍 Pittulongu</div>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Spiaggia+Pittulongu+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4 class="it">Spiaggia di Pittulongu</h4><h4 class="en">Pittulongu Beach</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- Murta Maria / Porto Istana -->
+    <div class="luoghi-section-label" style="font-size:0.65rem; color:var(--text-muted); padding:6px 2px 4px; letter-spacing:0.06em;">📍 Murta Maria</div>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Spiaggia+Porto+Istana+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Porto Istana</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Capo+Ceraso+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Capo Ceraso</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- San Teodoro -->
+    <div class="luoghi-section-label" style="font-size:0.65rem; color:var(--text-muted); padding:6px 2px 4px; letter-spacing:0.06em;">📍 San Teodoro</div>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=La+Cinta+San+Teodoro+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>La Cinta</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Cala+Brandinchi+San+Teodoro" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Cala Brandinchi</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Lu+Impostu+San+Teodoro+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Lu Impostu</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- Porto Rotondo -->
+    <div class="luoghi-section-label" style="font-size:0.65rem; color:var(--text-muted); padding:6px 2px 4px; letter-spacing:0.06em;">📍 Porto Rotondo</div>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Spiaggia+Ira+Porto+Rotondo+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Spiaggia Ira</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- Golfo Aranci -->
+    <div class="luoghi-section-label" style="font-size:0.65rem; color:var(--text-muted); padding:6px 2px 4px; letter-spacing:0.06em;">📍 Golfo Aranci</div>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Terza+Spiaggia+Golfo+Aranci" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Terza Spiaggia</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Cala+Moresca+Golfo+Aranci" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Cala Moresca</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- Porto Cervo -->
+    <div class="luoghi-section-label" style="font-size:0.65rem; color:var(--text-muted); padding:6px 2px 4px; letter-spacing:0.06em;">📍 Porto Cervo</div>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Capriccioli+Porto+Cervo+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Capriccioli</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Spiaggia+del+Principe+Costa+Smeralda" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Spiaggia del Principe</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-beach" href="https://maps.google.com/?q=Orange+Beach+Porto+Cervo+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🏖️</div><div><h4>Orange Beach</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+  </div>
+</div>
+
+
+<!-- ══ MANGIARE ══ -->
+<div id="tab-mangiare" class="tab-content">
+  <div class="inner-header">
+    <h2 class="it">Dove mangiare</h2><h2 class="en">Where to eat</h2>
+    <p class="it">I consigli di Michele a Olbia</p><p class="en">Michele's picks in Olbia</p>
+  </div>
+  <div class="section-body">
+
+    <!-- COLAZIONE -->
+    <div class="luoghi-section-label it">☕ Colazione</div>
+    <div class="luoghi-section-label en">☕ Breakfast</div>
+    <a class="city-row cat-col" href="https://maps.google.com/?q=Bar+Tiramisù+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">☕</div><div><h4>Bar Tiramisù</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-col" href="https://maps.google.com/?q=Il+Viale+bar+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">☕</div><div><h4>Il Viale</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-col" href="https://maps.google.com/?q=Avenue+bar+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">☕</div><div><h4>Avenue</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- RISTORANTI -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">🍽️ Ristoranti</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">🍽️ Restaurants</div>
+    <a class="city-row cat-rist" href="https://maps.google.com/?q=Osteria+al+Solito+Posto+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍽️</div><div><h4>Osteria al Solito Posto</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-rist" href="https://maps.google.com/?q=Da+Bartolo+ristorante+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍽️</div><div><h4>Da Bartolo</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-rist" href="https://maps.google.com/?q=Gils+Quick+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍽️</div><div><h4>Gils Quick</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-rist" href="https://maps.google.com/?q=Vela+Blu+ristorante+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍽️</div><div><h4>Vela Blu</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-rist" href="https://maps.google.com/?q=Ristorante+da+Paolo+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍽️</div><div><h4>Ristorante da Paolo</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-rist" href="https://maps.google.com/?q=Antica+Licantias+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍽️</div><div><h4>Antica Licantias</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- AGRITURISMI -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">🌾 Agriturismi</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">🌾 Farm restaurants</div>
+    <a class="city-row cat-agri" href="https://maps.google.com/?q=Su+Terrabinu+Locanda+Rudalza+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🌾</div><div><h4>Su Terrabinu – Locanda Rudalza</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-agri" href="https://maps.google.com/?q=Lu+Stazzu+agriturismo+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🌾</div><div><h4>Lu Stazzu</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-agri" href="https://maps.google.com/?q=Agliuledda+agriturismo+Sardegna" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🌾</div><div><h4>Agliuledda</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- PIZZA -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">🍕 Pizza</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">🍕 Pizza</div>
+    <a class="city-row cat-pizza" href="https://maps.google.com/?q=La+Puccia+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍕</div><div><h4>La Puccia</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-pizza" href="https://maps.google.com/?q=I+Portici+pizzeria+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍕</div><div><h4>I Portici</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- PANINI -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">🥖 Panini</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">🥖 Sandwiches</div>
+    <a class="city-row cat-panini" href="https://maps.google.com/?q=Peterland+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🥖</div><div><h4>Peterland</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- APERITIVO -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">🍹 Aperitivo</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">🍹 Aperitif</div>
+    <a class="city-row cat-aper" href="https://maps.google.com/?q=Regina+Elena+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍹</div><div><h4>Regina Elena</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+    <!-- GELATERIA -->
+    <div class="luoghi-section-label it" style="margin-top:6px;">🍦 Gelaterie</div>
+    <div class="luoghi-section-label en" style="margin-top:6px;">🍦 Gelato</div>
+    <a class="city-row cat-gel" href="https://maps.google.com/?q=La+Pecora+Nera+gelateria+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍦</div><div><h4>La Pecora Nera</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+    <a class="city-row cat-gel" href="https://maps.google.com/?q=Gelateria+degli+Angeli+Olbia" target="_blank">
+      <div class="city-row-left"><div class="cr-icon">🍦</div><div><h4>Gelateria degli Angeli</h4></div></div><span class="maps-btn">🗺️ Maps</span>
+    </a>
+
+  </div>
+</div>
+
+
+<!-- ══ MUOVERSI ══ -->
+<div id="tab-muoversi" class="tab-content">
+  <div class="inner-header">
+    <h2 class="it">Come muoversi</h2><h2 class="en">Getting around</h2>
+    <p class="it">Aeroporto, traghetti, treno e NCC</p><p class="en">Airport, ferries, train and NCC</p>
+  </div>
+  <div class="section-body">
+
+    <!-- ZTL -->
+    <div class="move-card" style="border-color:#e03030; border-left:4px solid #e03030; background:linear-gradient(135deg,#fff5f5,#ffe8e8);">
+      <div class="move-header">
+        <div class="move-icon" style="background:#fdd0d0;">🚫</div>
+        <h4 style="color:#b02020;">ZTL – <span class="it">Centro di Olbia</span><span class="en">Olbia City Centre</span></h4>
+      </div>
+      <ul class="move-list">
+        <li class="it" style="color:#b02020;">ZTL attiva in alcuni punti <strong>h24</strong></li>
+        <li class="en" style="color:#b02020;">ZTL active in some areas <strong>24h</strong></li>
+        <li class="it" style="color:#b02020;">In altri punti attiva dalle <strong>17:00 alle 00:00</strong></li>
+        <li class="en" style="color:#b02020;">In other areas active from <strong>5 PM to 00:00</strong></li>
+      </ul>
+    </div>
+
+        <!-- Aeroporto -->
+    <div class="move-card">
+      <div class="move-header">
+        <div class="move-icon">✈️</div>
+        <h4 class="it">Aeroporto</h4><h4 class="en">Airport</h4>
+      </div>
+      <ul class="move-list">
+        <li><strong>Olbia Costa Smeralda (OLB)</strong> <span class="it">~15 km da qui</span><span class="en">~15 km away</span></li>
+      </ul>
+      <a href="https://maps.google.com/?q=Aeroporto+Olbia+Costa+Smeralda" target="_blank" class="move-maps-btn">📍 <span class="it">Apri in Maps</span><span class="en">Open in Maps</span></a>
+    </div>
+
+    <!-- Traghetti -->
+    <div class="move-card">
+      <div class="move-header">
+        <div class="move-icon">🚢</div>
+        <h4 class="it">Traghetti</h4><h4 class="en">Ferries</h4>
+      </div>
+      <ul class="move-list">
+        <li class="it">Porto di <strong>Olbia</strong></li>
+        <li class="en">Port of <strong>Olbia</strong></li>
+        <li class="it">Connessioni da Civitavecchia, Genova, Livorno</li>
+        <li class="en">Connections from Civitavecchia, Genoa, Livorno</li>
+      </ul>
+      <a href="https://maps.google.com/?q=Porto+di+Olbia" target="_blank" class="move-maps-btn">📍 <span class="it">Apri in Maps</span><span class="en">Open in Maps</span></a>
+    </div>
+
+    <!-- Treno -->
+    <div class="move-card">
+      <div class="move-header">
+        <div class="move-icon">🚂</div>
+        <h4 class="it">Treno</h4><h4 class="en">Train</h4>
+      </div>
+      <ul class="move-list">
+        <li class="it">Stazione di <strong>Olbia</strong></li>
+        <li class="en">Station at <strong>Olbia</strong></li>
+        <li><a href="https://www.trenitalia.com" target="_blank" class="move-link it">Prenota su Trenitalia ↗</a><a href="https://www.trenitalia.com" target="_blank" class="move-link en">Book on Trenitalia ↗</a></li>
+      </ul>
+      <a href="https://maps.google.com/?q=Stazione+Olbia" target="_blank" class="move-maps-btn">📍 <span class="it">Apri in Maps</span><span class="en">Open in Maps</span></a>
+    </div>
+
+<!-- Bus -->
+    <div class="move-card">
+      <div class="move-header">
+        <div class="move-icon">🚌</div>
+        <h4 class="it">Autobus</h4><h4 class="en">Bus</h4>
+      </div>
+      <ul class="move-list">
+        <li class="it">Tutte le corse degli autobus ASPO Olbia</li>
+        <li class="en">All ASPO Olbia bus routes and timetables</li>
+      </ul>
+      <a href="https://www.mycicero.it/aspo-ot/TPWebPortal/it/" target="_blank" class="move-maps-btn">🚌 <span class="it">Orari e corse</span><span class="en">Routes & timetables</span></a>
+    </div>
+
+    <!-- NCC Driver in Cravatta -->
+    <div class="move-card">
+      <div class="move-header">
+        <div class="move-icon">🤵</div>
+        <h4>NCC – Driver in Cravatta</h4>
+      </div>
+      <ul class="move-list">
+        <li class="it">Auto con conducente · Transfer aeroporto, escursioni e spostamenti in Sardegna</li>
+        <li class="en">Chauffeur service · Airport transfers, excursions and travel in Sardinia</li>
+        <li><a href="https://driverincravatta.it/it" target="_blank" class="move-link">driverincravatta.it ↗</a></li>
+      </ul>
+      <div class="move-btns">
+        <a href="tel:+393335433546" class="move-phone-btn">📞 +39 333 543 3546</a>
+        <a href="https://driverincravatta.it/it" target="_blank" class="move-web-btn">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+      </div>
+    </div>
+
+    <!-- Contatti -->
+    <div class="move-contatti-label">
+      <h3 class="it">Contatti 📞</h3><h3 class="en">Contacts 📞</h3>
+    </div>
+    <div class="move-contact-card">
+      <p class="it">Per qualsiasi necessità contatta Michele.</p>
+      <p class="en">For any need, contact Michele.</p>
+      <div class="move-contact-row">
+        <div class="move-contact-info">
+          <span class="move-phone-icon">📞</span>
+          <div>
+            <strong class="it">Michele · Tourism Services</strong>
+            <strong class="en">Michele · Tourism Services</strong>
+            <span class="move-contact-num">+39 333 543 3546</span>
+          </div>
+        </div>
+        <a href="https://wa.me/393335433546" target="_blank" class="move-wa-btn">💬</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ SERVIZI ══ -->
+<div id="tab-servizi" class="tab-content">
+  <div class="inner-header">
+    <h2 class="it">Servizi Extra</h2><h2 class="en">Extra Services</h2>
+    <p class="it">Prenota direttamente da noi · Contatta Michele</p>
+    <p class="en">Book directly with us · Contact Michele</p>
+  </div>
+  <div class="section-body">
+
+    <!-- EXTRA SERVICES GRID -->
+    <div class="extra-grid">
+
+      <a href="https://wa.me/393335433546?text=Vorrei%20prenotare%20una%20bottiglia%20di%20vino" target="_blank" class="extra-card" style="--ec:#8B4A8B; --ecl:#f5edf5;">
+        <span class="extra-icon">🍷</span>
+        <div class="extra-body">
+          <h4 class="it">Bottiglia di Vino</h4><h4 class="en">Bottle of Wine</h4>
+          <p class="it">Prosecco · Rosso · Bianco</p><p class="en">Prosecco · Red · White</p>
+          <span class="extra-price">€ 25,00</span>
+        </div>
+        <span class="extra-wa">📲</span>
+      </a>
+
+      <a href="https://wa.me/393335433546?text=Vorrei%20prenotare%20il%20kit%20spiaggia" target="_blank" class="extra-card" style="--ec:#1a7eb8; --ecl:#e8f4fc;">
+        <span class="extra-icon">⛱️</span>
+        <div class="extra-body">
+          <h4 class="it">Kit Spiaggia</h4><h4 class="en">Beach Kit</h4>
+          <p class="it">Ombrellone + 2 teli mare</p><p class="en">Umbrella + 2 beach towels</p>
+          <span class="extra-price">€ 10,00</span>
+        </div>
+        <span class="extra-wa">📲</span>
+      </a>
+
+      <a href="https://wa.me/393335433546?text=Vorrei%20noleggiare%20una%20bici%20elettrica" target="_blank" class="extra-card" style="--ec:#2a9060; --ecl:#eaf7f0;">
+        <span class="extra-icon">⚡🚲</span>
+        <div class="extra-body">
+          <h4 class="it">Bici Elettrica</h4><h4 class="en">E-Bike</h4>
+          <p class="it">Noleggio su richiesta</p><p class="en">Rental on request</p>
+          <span class="extra-price it">Su richiesta</span><span class="extra-price en">On request</span>
+        </div>
+        <span class="extra-wa">📲</span>
+      </a>
+
+      <a href="https://wa.me/393335433546?text=Vorrei%20noleggiare%20uno%20scooter%20125" target="_blank" class="extra-card" style="--ec:#c47820; --ecl:#fdf4e4;">
+        <span class="extra-icon">🛵</span>
+        <div class="extra-body">
+          <h4>Scooter 125</h4>
+          <p class="it">Noleggio su richiesta</p><p class="en">Rental on request</p>
+          <span class="extra-price it">Su richiesta</span><span class="extra-price en">On request</span>
+        </div>
+        <span class="extra-wa">📲</span>
+      </a>
+
+      <a href="https://wa.me/393335433546?text=Vorrei%20noleggiare%20un%27auto" target="_blank" class="extra-card" style="--ec:#2a8fa0; --ecl:#e8f6fa;">
+        <span class="extra-icon">🚗</span>
+        <div class="extra-body">
+          <h4 class="it">Auto Noleggio</h4><h4 class="en">Car Rental</h4>
+          <p class="it">Ritiro in struttura</p><p class="en">Pick-up at property</p>
+          <span class="extra-price it">Su richiesta</span><span class="extra-price en">On request</span>
+        </div>
+        <span class="extra-wa">📲</span>
+      </a>
+
+      <a href="https://wa.me/393335433546?text=Vorrei%20il%20servizio%20deposito%20bagagli" target="_blank" class="extra-card" style="--ec:#6a5acd; --ecl:#f0eeff;">
+        <span class="extra-icon">🧳</span>
+        <div class="extra-body">
+          <h4 class="it">Deposito Bagagli</h4><h4 class="en">Luggage Storage</h4>
+          <p class="it">Lascia i bagagli in sicuro</p><p class="en">Leave bags safely</p>
+          <span class="extra-price it">Su richiesta</span><span class="extra-price en">On request</span>
+        </div>
+        <span class="extra-wa">📲</span>
+      </a>
+
+      <a href="https://wa.me/393335433546?text=Vorrei%20prenotare%20un%20NCC" target="_blank" class="extra-card" style="--ec:#1a3a8f; --ecl:#eaedfa; grid-column: span 2;">
+        <span class="extra-icon">🤵</span>
+        <div class="extra-body">
+          <h4 class="it">NCC – Auto con Conducente</h4><h4 class="en">NCC – Chauffeur Service</h4>
+          <p class="it">Transfer aeroporto · Escursioni · Spostamenti</p>
+          <p class="en">Airport transfer · Excursions · Travel</p>
+          <span class="extra-price it">Su richiesta</span><span class="extra-price en">On request</span>
+        </div>
+        <span class="extra-wa">📲</span>
+      </a>
+
+    </div>
+
+    <!-- CTA Michele -->
+    <a href="https://wa.me/393335433546" target="_blank" class="book-btn" style="margin: 6px 0 16px;">
+      💬 <span class="it">Prenota su WhatsApp</span><span class="en">Book on WhatsApp</span>
+    </a>
+
+    <!-- PARTNER CARDS -->
+    <div class="luoghi-section-label it" style="margin-top:4px;">🤝 Partner consigliati</div>
+    <div class="luoghi-section-label en" style="margin-top:4px;">🤝 Recommended partners</div>
+
+    <!-- SmeraldaRent -->
+    <div class="partner-card">
+      <div class="partner-top-bar" style="background: linear-gradient(90deg, #2a8fa0, #1a6e82);"></div>
+      <div class="partner-body">
+        <div class="partner-header">
+          <div class="partner-icon" style="background:#e8f6fa;">🚗</div>
+          <div class="partner-info">
+            <h4>SmeraldaRent</h4>
+            <span class="partner-badge" style="background:#dff0f5; color:#0d4858;">
+              <span class="it">Noleggio Auto</span><span class="en">Car Rental</span>
+            </span>
+          </div>
+        </div>
+        <p class="it">Noleggio auto a Olbia Aeroporto e in tutta la Costa Smeralda.</p>
+        <p class="en">Car rental at Olbia Airport and throughout Costa Smeralda.</p>
+        <div class="partner-footer">
+          <a href="tel:+393514548362" class="partner-phone">📞 351 454 8362</a>
+          <a href="https://www.smeraldarent.it/" target="_blank" class="partner-btn"><span class="it">Prenota</span><span class="en">Book</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Baggage Parking -->
+    <div class="partner-card">
+      <div class="partner-top-bar" style="background: linear-gradient(90deg, #2a9060, #1a6e45);"></div>
+      <div class="partner-body">
+        <div class="partner-header">
+          <div class="partner-icon" style="background:#e8f5ee;">🧳</div>
+          <div class="partner-info">
+            <h4>Baggage Parking</h4>
+            <span class="partner-badge" style="background:#dff5ea; color:#1a6e45;">
+              <span class="it">Deposito Bagagli</span><span class="en">Luggage Storage</span>
+            </span>
+          </div>
+        </div>
+        <p class="it">1 Mag – 31 Ott · 09–12:30 / 16–18:30</p>
+        <p class="en">1 May – 31 Oct · 09–12:30 / 16–18:30</p>
+        <p class="partner-prices">€5 · 3h &nbsp;·&nbsp; €10 · 6h &nbsp;·&nbsp; €15 · giornata</p>
+        <div class="partner-footer">
+          <a href="tel:+393335433546" class="partner-phone">📞 333 543 3546</a>
+          <a href="https://baggageparking.com/" target="_blank" class="partner-btn"><span class="it">Prenota</span><span class="en">Book</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver in Cravatta -->
+    <div class="partner-card">
+      <div class="partner-top-bar" style="background: linear-gradient(90deg, #1a3a8f, #0d2460);"></div>
+      <div class="partner-body">
+        <div class="partner-header">
+          <div class="partner-icon" style="background:#eaedfa;">🤵</div>
+          <div class="partner-info">
+            <h4>Driver in Cravatta</h4>
+            <span class="partner-badge" style="background:#e0e5f8; color:#0d2460;">NCC Premium</span>
+          </div>
+        </div>
+        <p class="it">Transfer aeroporto, escursioni e spostamenti in tutta eleganza.</p>
+        <p class="en">Airport transfers, excursions and travel in full elegance.</p>
+        <div class="partner-footer">
+          <a href="tel:+393335433546" class="partner-phone">📞 333 543 3546</a>
+          <a href="https://driverincravatta.it/it" target="_blank" class="partner-btn"><span class="it">Scopri</span><span class="en">Discover</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ FIXED LANG TOGGLE ══ -->
+
+<!-- WiFi Modal — global, outside all tabs -->
+<div id="wifi-modal" class="wifi-modal" onclick="closeWifiQR()">
+  <div class="wifi-modal-inner" onclick="event.stopPropagation()">
+    <div class="wifi-modal-header">
+      <h4 class="it">📶 WiFi Gratuito</h4>
+      <h4 class="en">📶 Free WiFi</h4>
+      <p class="it">Connettiti alla rete</p>
+      <p class="en">Connect to the network</p>
+    </div>
+    <div class="wifi-modal-creds">
+      <span class="it">Rete:</span><span class="en">Network:</span>
+      <strong>Blessed b&amp;b</strong> / <strong>Blessed_Wifi</strong>
+      <br>
+      <span class="it">Password:</span><span class="en">Password:</span>
+      <strong>supersuperblessed</strong> / <strong>Blessed24</strong>
+    </div>
+    <button class="wifi-modal-close" onclick="closeWifiQR()">✕ <span class="it">Chiudi</span><span class="en">Close</span></button>
+  </div>
+</div>
+
+<div class="lang-fixed">
+  <button class="lang-btn active" id="btn-it2" onclick="setLang('it')">🇮🇹 IT</button>
+  <button class="lang-btn"        id="btn-en2" onclick="setLang('en')">🇬🇧 EN</button>
+</div>
+
+<!-- ══ BOTTOM NAV ══ -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="showTab('home',this)">
+    <span class="ni">🏠</span><span class="nl it">Home</span><span class="nl en">Home</span>
+  </button>
+  <button class="nav-btn" onclick="showTab('soggiorno',this)">
+    <span class="ni">🛏️</span><span class="nl it">Soggiorno</span><span class="nl en">Stay</span>
+  </button>
+  <button class="nav-btn" onclick="showTab('luoghi',this)">
+    <span class="ni">🗺️</span><span class="nl it">Luoghi</span><span class="nl en">Places</span>
+  </button>
+  <button class="nav-btn" onclick="showTab('mangiare',this)">
+    <span class="ni">🍽️</span><span class="nl it">Mangiare</span><span class="nl en">Eat</span>
+  </button>
+  <button class="nav-btn" onclick="showTab('muoversi',this)">
+    <span class="ni">🚗</span><span class="nl it">Muoversi</span><span class="nl en">Travel</span>
+  </button>
+  <button class="nav-btn" onclick="showTab('servizi',this)">
+    <span class="ni">✨</span><span class="nl it">Servizi</span><span class="nl en">Services</span>
+  </button>
+</nav>
+
+<script>
+  function showWifiQR() {
+    document.getElementById('wifi-modal').classList.add('open');
+  }
+  function closeWifiQR() {
+    document.getElementById('wifi-modal').classList.remove('open');
+  }
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✅';
+      setTimeout(() => btn.textContent = '📋', 1500);
+    });
+  }
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  function setLang(l) {
+    document.documentElement.setAttribute('data-lang', l);
+    ['btn-it','btn-it2'].forEach(id => { var el=document.getElementById(id); if(el) el.classList.toggle('active', l==='it'); });
+    ['btn-en','btn-en2'].forEach(id => { var el=document.getElementById(id); if(el) el.classList.toggle('active', l==='en'); });
+    localStorage.setItem('lang_bb26', l);
+  }
+  (function(){ const s = localStorage.getItem('lang_bb26'); if(s) setLang(s); })();
+</script>
+</body>
+</html>
